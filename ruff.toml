@@ -63,4 +63,5 @@ skip-magic-trailing-comma = false
 line-ending = "lf"
 
 # モジュールimportの順序
-import-order-style = "google"
+# オプション無効によりコメントアウト
+#import-order-style = "google"
