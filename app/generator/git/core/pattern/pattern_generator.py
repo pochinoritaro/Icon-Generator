@@ -3,8 +3,7 @@
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy...
 
-"""
-PatternGeneratorモジュール:
+"""PatternGeneratorモジュール:
 16進数文字列からアイデンティコン用の左右対称パターンを生成するクラスを提供します。
 """
 
@@ -13,8 +12,7 @@ from numpy.typing import NDArray
 
 
 class PatternGenerator:
-    """
-    16進数の文字列からアイデンティコンのパターンを生成するクラス。
+    """16進数の文字列からアイデンティコンのパターンを生成するクラス。
 
     Attributes:
         PATTERN_WIDTH (int): パターンの幅（固定値5）。
@@ -31,6 +29,7 @@ class PatternGenerator:
 
         apply_color(rgb_pattern: list[int]) -> NDArray[np.int_]:
             バイナリパターンにRGBカラーを適用し、カラー画像用の3次元配列を返す。
+
     """
 
     PATTERN_WIDTH = 5
@@ -41,18 +40,18 @@ class PatternGenerator:
         expected_len = self.PATTERN_WIDTH * self.PATTERN_HEIGHT
         if len(hex_pattern) != expected_len:
             raise ValueError(
-                f"hex_pattern must be exactly {expected_len} characters long."
+                f"hex_pattern must be exactly {expected_len} characters long.",
             )
         if not all(c in "0123456789abcdefABCDEF" for c in hex_pattern):
             raise ValueError(
-                "hex_pattern must only contain hexadecimal characters (0-9, a-f)."
+                "hex_pattern must only contain hexadecimal characters (0-9, a-f).",
             )
         self.pattern = self._create_pattern(hex_pattern=hex_pattern)
 
     def _create_pattern(self, hex_pattern: str) -> NDArray[np.int_]:
         """16進数の文字列を基に2次元のパターンを作成"""
         binary_pattern = np.array(
-            [(1 if int(x, 16) % 2 == 0 else 0) for x in hex_pattern]
+            [(1 if int(x, 16) % 2 == 0 else 0) for x in hex_pattern],
         ).reshape(self.PATTERN_HEIGHT, self.PATTERN_WIDTH)
 
         # 左右対称にミラーリング
@@ -85,8 +84,8 @@ if __name__ == "__main__":
     print("binary_pattern (3x5):")
     print(
         np.array([(1 if int(x, 16) % 2 == 0 else 0) for x in example_hex]).reshape(
-            pg.PATTERN_HEIGHT, pg.PATTERN_WIDTH
-        )
+            pg.PATTERN_HEIGHT, pg.PATTERN_WIDTH,
+        ),
     )
     print("\nmirrored_pattern (5x5):")
     print(pg._mirror_pattern(pg.pattern))  # type: ignore
