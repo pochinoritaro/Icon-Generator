@@ -1,0 +1,66 @@
+# よく無視されるディレクトリを除外する
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+]
+
+# Black と同じ設定
+line-length = 88         # 1行の最大文字数
+indent-width = 4         # インデント幅
+
+# Python 3.12を想定
+target-version = "py312"
+
+[lint]
+# デフォルトで Pyflakes（F）と pycodestyle の一部（E）を有効にする
+# Flake8 と違い、pycodestyle の警告（W）や McCabe の複雑度（C901）は有効にならない
+#select = ["E4", "E7", "E9", "F", "I"]
+select = ["ALL"]
+ignore = [
+    "T201",  # print() の使用許可
+    #"D400", "D415",  # docstring のピリオド強制を無効化
+    "ERA001",  # コメントアウトされたコードOK
+    "RET504",  # 直接returnしなくてもOK
+]
+
+# `--fix` が指定された場合、有効なすべてのルールに対して修正を許可
+fixable = ["ALL"]
+unfixable = []
+
+# アンダースコアで始まる変数（未使用でも許可される）を許容
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[format]
+# Black と同様、文字列にはダブルクォートを使用
+quote-style = "double"
+
+# Black と同様、タブではなくスペースでインデント
+indent-style = "space"
+
+# Black と同様、末尾カンマがある場合は自動で整形を適用
+skip-magic-trailing-comma = false
+
+# Black と同様、改行コードを自動検出（LF / CRLF）
+line-ending = "LF"
+
+# モジュールimportの順序
+import-order-style = "google"
