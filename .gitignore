@@ -14,5 +14,8 @@ poetry.lock
 .pytest_cache/
 .ruff_cache/
 
+# テスト関係
+.coverage
+
 # VSCode 設定
 .vscode/
