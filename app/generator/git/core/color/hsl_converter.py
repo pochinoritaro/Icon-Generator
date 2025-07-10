@@ -4,16 +4,14 @@
 # Copyright (c) 2025 kazuma tunomori
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy...
-"""
-HSLConverterモジュール:
+"""HSLConverterモジュール:
 16進数で表現されたカラーパターン文字列から、
 Hue、Saturation、Luminance (HSL) の各値を算出する機能を提供します。
 """
 
 
 class HSLConverter:
-    """
-    Color pattern から HSL (Hue, Saturation, Luminance) 値を生成するクラス。
+    """Color pattern から HSL (Hue, Saturation, Luminance) 値を生成するクラス。
 
     定数に基づき、16進数で表現されたカラーパターンの各パーツから
     HSLの各値を計算し、スケール変換を行う。
@@ -38,6 +36,7 @@ class HSLConverter:
 
         _calculate_luminance(lum_hex: str) -> float:
             輝度を16進数からスケール変換して計算。
+
     """
 
     MAX_HUE = 360
