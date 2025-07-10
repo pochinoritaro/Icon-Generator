@@ -59,8 +59,8 @@ indent-style = "space"
 # Black と同様、末尾カンマがある場合は自動で整形を適用
 skip-magic-trailing-comma = false
 
-# Black と同様、改行コードを自動検出（LF / CRLF）
-line-ending = "LF"
+# Black と同様、改行コードを自動検出（lf / crlf）
+line-ending = "lf"
 
 # モジュールimportの順序
 import-order-style = "google"
