@@ -15,8 +15,8 @@ from io import BytesIO
 from PIL import Image, UnidentifiedImageError
 from PIL.Image import Resampling
 
-from icon_generator.errors import ErrorMessages
-from icon_generator.generator import Generator
+from src.icon_generator.errors import ErrorMessages
+from src.icon_generator.generator import Generator
 
 from .core.color import RGBGenerator
 from .core.pattern import PatternGenerator
