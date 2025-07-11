@@ -10,7 +10,7 @@
 import numpy as np
 from numpy.typing import NDArray
 
-from icon_generator.errors import ErrorMessages
+from src.icon_generator.errors import ErrorMessages
 
 
 class PatternGenerator:
