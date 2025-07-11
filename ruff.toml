@@ -42,6 +42,11 @@ ignore = [
     "RET504",  # 直接returnしなくてもOK
 ]
 
+# tests配下のファイルでのみS101を無視
+per-file-ignores = [
+    "tests/**/*.py:S101",
+]
+
 # `--fix` が指定された場合、有効なすべてのルールに対して修正を許可
 fixable = ["ALL"]
 unfixable = []
