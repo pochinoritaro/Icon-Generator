@@ -1,4 +1,4 @@
-"""Git icon generator core mojule"""
+"""PatternGenerator test."""
 # __init__.py
 
 # MIT License
