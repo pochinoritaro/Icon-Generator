@@ -1,12 +1,13 @@
+"""RGBGeneratorモジュール:
+
+HSL形式で表現されたカラーパターン文字列からRGBカラー値を生成するクラスを提供します。
+"""
 # rgb_generator.py
 
 # MIT License
 # Copyright (c) 2025 kazuma tunomori
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy...
-"""RGBGeneratorモジュール:
-HSL形式で表現されたカラーパターン文字列からRGBカラー値を生成するクラスを提供します。
-"""
 
 import colorsys
 import math
@@ -19,9 +20,9 @@ class RGBGenerator:
 
     Attributes:
         rgb (list[int]): 0-255スケールのRGBカラー値リスト。
-        red (int): 赤成分 (0-255)。
-        green (int): 緑成分 (0-255)。
-        blue (int): 青成分 (0-255)。
+        red (int): 赤成分 (0-255)
+        green (int): 緑成分 (0-255)
+        blue (int): 青成分 (0-255)
 
     Methods:
         __init__(color_pattern: str):
@@ -30,7 +31,9 @@ class RGBGenerator:
     """
 
     def __init__(self, color_pattern: str) -> None:
-        """HSLConverterを用いてcolor_patternからHSLを算出し、
+        """RGBGeneratorのコンストラクタ。
+
+        HSLConverterを用いてcolor_patternからHSLを算出し、
         colorsysでRGBに変換後、0-255スケールで格納する。
 
         Args:

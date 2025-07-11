@@ -1,13 +1,13 @@
+"""GitIconGeneratorモジュール:
+
+UUIDを元にアイデンティコン画像を生成する機能を提供します。
+"""
 # git_icon_generator.py
 
 # MIT License
 # Copyright (c) 2025 kazuma tunomori
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy...
-"""GitIconGeneratorモジュール:
-UUIDを元にアイデンティコン画像を生成する機能を提供します。
-"""
-
 
 import uuid
 from io import BytesIO
@@ -15,7 +15,9 @@ from io import BytesIO
 from PIL import Image, UnidentifiedImageError
 from PIL.Image import Resampling
 
-from ..generator import Generator
+from icon_generator.errors import ErrorMessages
+from icon_generator.generator import Generator
+
 from .core.color import RGBGenerator
 from .core.pattern import PatternGenerator
 
@@ -24,7 +26,8 @@ class GitIconGenerator(Generator):
     """UUIDを元にアイデンティコンを生成するクラス。
 
     Attributes:
-        _identicon_pattern (PatternGenerator): UUIDの一部から生成したパターンジェネレータ。
+        _identicon_pattern (PatternGenerator):
+            UUIDの一部から生成したパターンジェネレータ。
         _color (RGBGenerator): UUIDの一部から生成したRGBカラー。
 
     Methods:
@@ -44,8 +47,7 @@ class GitIconGenerator(Generator):
         self._color = RGBGenerator(unique_uuid.hex[25:])
 
     def generate_on_memory(self, image_size: int = 600) -> BytesIO:
-        """UUIDに基づくパターンとカラーを適用したアイデンティコン画像を生成し、
-        メモリ上にPNG形式で保持したBytesIOオブジェクトを返す。
+        """UUIDに基づくパターンとカラーを適用したアイデンティコン画像を生成し、メモリ上にPNG形式で保持したBytesIOオブジェクトを返す。
 
         Returns:
             BytesIO: PNG画像のバイナリデータを保持したメモリオブジェクト。
@@ -65,6 +67,9 @@ class GitIconGenerator(Generator):
             img.save(img_io, "PNG")
             img_io.seek(0)
 
-            return img_io
         except (ValueError, OSError, UnidentifiedImageError) as e:
-            raise RuntimeError("Identicon image generation failed") from e
+            message = ErrorMessages.IDENTICON_GENERATION_FAILED.value
+            raise RuntimeError(message) from e
+
+        else:
+            return img_io

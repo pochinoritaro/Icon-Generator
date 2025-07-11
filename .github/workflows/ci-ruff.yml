@@ -22,4 +22,4 @@ jobs:
       - name: Install dependencies
         run: poetry install --no-root
       - name: Run Ruff
-        run: poetry run ruff check ./app
+        run: poetry run ruff check .

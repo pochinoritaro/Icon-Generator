@@ -37,7 +37,7 @@ target-version = "py312"
 select = ["ALL"]
 ignore = [
     "T201",  # print() の使用許可
-    #"D400", "D415",  # docstring のピリオド強制を無効化
+    "D400", "D415",  # docstring のピリオド強制を無効化
     "ERA001",  # コメントアウトされたコードOK
     "RET504",  # 直接returnしなくてもOK
 ]

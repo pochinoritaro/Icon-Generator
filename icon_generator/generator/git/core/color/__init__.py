@@ -1,9 +1,10 @@
+"""RGB-based icon generation package."""
 # __init__.py
 
 # MIT License
 # Copyright (c) 2025 kazuma tunomori
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy...
-from .pattern_generator import PatternGenerator
+from .rgb_generator import RGBGenerator
 
-__all__ = ["PatternGenerator"]
+__all__ = ["RGBGenerator"]
