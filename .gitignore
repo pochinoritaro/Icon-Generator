@@ -16,6 +16,7 @@ poetry.lock
 
 # テスト関係
 .coverage
+.VSCodeCounter/
 
 # VSCode 設定
 .vscode/

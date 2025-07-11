@@ -9,7 +9,7 @@
 import numpy as np
 import pytest
 
-from icon_generator.generator.git.core.pattern import PatternGenerator
+from src.icon_generator.generator.git.core.pattern import PatternGenerator
 
 
 class TestPatternGeneratorNomalCases:
