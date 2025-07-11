@@ -43,9 +43,7 @@ ignore = [
 ]
 
 # tests配下のファイルでのみS101を無視
-per-file-ignores = [
-    "tests/**/*.py:S101",
-]
+per-file-ignores =  { "tests/**/*.py" = ["S101", "SLF001"] }
 
 # `--fix` が指定された場合、有効なすべてのルールに対して修正を許可
 fixable = ["ALL"]
