@@ -1,27 +1,26 @@
+"""HSLConverterモジュール:
+
+16進数で表現されたカラーパターン文字列から、
+Hue、Saturation、Luminance (HSL) の各値を算出する機能を提供します。
+"""
 # hsl_converter.py
 
 # MIT License
 # Copyright (c) 2025 kazuma tunomori
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy...
-"""
-HSLConverterモジュール:
-16進数で表現されたカラーパターン文字列から、
-Hue、Saturation、Luminance (HSL) の各値を算出する機能を提供します。
-"""
 
 
 class HSLConverter:
-    """
-    Color pattern から HSL (Hue, Saturation, Luminance) 値を生成するクラス。
+    """Color pattern から HSL (Hue, Saturation, Luminance) 値を生成するクラス。
 
     定数に基づき、16進数で表現されたカラーパターンの各パーツから
     HSLの各値を計算し、スケール変換を行う。
 
     Attributes:
-        MAX_HUE (int): 最大の色相 (Hue) 値（360度）。
-        MAX_SATURATION (int): 最大の彩度 (Saturation) 値（65%）。
-        MAX_LUMINANCE (int): 最大の輝度 (Luminance) 値（75%）。
+        MAX_HUE (int): 最大の色相 (Hue) 値 (360度)
+        MAX_SATURATION (int): 最大の彩度 (Saturation) 値 (65%)
+        MAX_LUMINANCE (int): 最大の輝度 (Luminance) 値 (75%)
         HUE_SCALE (float): Hueの16進数値から360度へのスケール係数。
         SATURATION_SCALE (float): Saturationの16進数値から彩度へのスケール係数。
         LUMINANCE_SCALE (float): Luminanceの16進数値から輝度へのスケール係数。
@@ -38,6 +37,7 @@ class HSLConverter:
 
         _calculate_luminance(lum_hex: str) -> float:
             輝度を16進数からスケール変換して計算。
+
     """
 
     MAX_HUE = 360

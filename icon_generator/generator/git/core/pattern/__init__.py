@@ -1,3 +1,4 @@
+"""Pattern generator package."""
 # __init__.py
 
 # MIT License
