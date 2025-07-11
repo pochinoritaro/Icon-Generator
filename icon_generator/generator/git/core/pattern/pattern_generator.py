@@ -10,6 +10,8 @@
 import numpy as np
 from numpy.typing import NDArray
 
+from icon_generator.errors import ErrorMessages
+
 
 class PatternGenerator:
     """16進数の文字列からアイデンティコンのパターンを生成するクラス。
@@ -35,18 +37,21 @@ class PatternGenerator:
     PATTERN_WIDTH = 5
     PATTERN_HEIGHT = 3
     WHITE_RGB = (255, 255, 255)
+    RGB_PATTERN_LENGTH = 3
+    RGB_VALUE_MIN = 0
+    RGB_VALUE_MAX = 255
 
     def __init__(self, hex_pattern: str) -> None:
         """16進数の文字列からパターンを生成"""
         expected_len = self.PATTERN_WIDTH * self.PATTERN_HEIGHT
         if len(hex_pattern) != expected_len:
-            raise ValueError(
-                f"hex_pattern must be exactly {expected_len} characters long.",
-            )
+            message = ErrorMessages.INVALID_HEX_LENGTH.format(length=expected_len)
+            raise ValueError(message)
+
         if not all(c in "0123456789abcdefABCDEF" for c in hex_pattern):
-            raise ValueError(
-                "hex_pattern must only contain hexadecimal characters (0-9, a-f).",
-            )
+            message = ErrorMessages.INVALID_HEX_PATTERN.value
+            raise ValueError(message)
+
         self.pattern = self._create_pattern(hex_pattern=hex_pattern)
 
     def _create_pattern(self, hex_pattern: str) -> NDArray[np.int_]:
@@ -67,10 +72,20 @@ class PatternGenerator:
 
     def apply_color(self, rgb_pattern: list[int]) -> NDArray[np.int_]:
         """パターンにRGBカラーを適用した配列を返す"""
-        if not (isinstance(rgb_pattern, list) and len(rgb_pattern) == 3):  # type: ignore[reportUnnecessaryIsInstance]
-            raise ValueError("rgb_pattern must be a list of 3 integers (R, G, B).")
-        if not all(isinstance(v, int) and 0 <= v <= 255 for v in rgb_pattern):  # type: ignore[reportUnnecessaryIsInstance]
-            raise ValueError("Each RGB value must be an integer between 0 and 255.")
+        if not (
+            isinstance(rgb_pattern, list)  # type: ignore[reportUnnecessaryIsInstance]
+            and len(rgb_pattern) == self.RGB_PATTERN_LENGTH
+        ):
+            message = ErrorMessages.RGB_PATTERN_LENGTH.value
+            raise ValueError(message)
+
+        if not all(
+            isinstance(v, int)  # type: ignore[reportUnnecessaryIsInstance]
+            and self.RGB_VALUE_MIN <= v <= self.RGB_VALUE_MIN
+            for v in rgb_pattern
+        ):
+            message = ErrorMessages.RGB_VALUE_RANGE.value
+            raise ValueError(message)
 
         color_pattern = np.zeros(shape=(*self.pattern.shape, 3), dtype=int)
         color_pattern[self.pattern == 0] = self.WHITE_RGB

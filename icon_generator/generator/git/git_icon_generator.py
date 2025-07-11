@@ -15,6 +15,7 @@ from io import BytesIO
 from PIL import Image, UnidentifiedImageError
 from PIL.Image import Resampling
 
+from icon_generator.errors import ErrorMessages
 from icon_generator.generator import Generator
 
 from .core.color import RGBGenerator
@@ -67,7 +68,8 @@ class GitIconGenerator(Generator):
             img_io.seek(0)
 
         except (ValueError, OSError, UnidentifiedImageError) as e:
-            raise RuntimeError("Identicon image generation failed") from e
+            message = ErrorMessages.IDENTICON_GENERATION_FAILED.value
+            raise RuntimeError(message) from e
 
         else:
             return img_io
