@@ -1,0 +1,21 @@
+name: Extract Version
+
+on:
+  workflow_dispatch:
+
+jobs:
+  get-version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Extract version from pyproject.toml
+        id: extract_version
+        run: |
+          VERSION=$(grep -m 1 '^version =' pyproject.toml | cut -d '"' -f2)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Show extracted version
+        run: echo "Version is ${{ steps.extract_version.outputs.version }}"
