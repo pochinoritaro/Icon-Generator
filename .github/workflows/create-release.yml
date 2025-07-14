@@ -18,7 +18,7 @@ jobs:
         id: extract_version
         run: |
           VERSION=$(grep -m 1 '^version =' pyproject.toml | cut -d '"' -f2)
-          VERSION_TAG="$(echo "$VERSION" | sed 's/\./_/g')"
+          VERSION_TAG="v$(echo "$VERSION" | sed 's/\./_/g')"
           echo "version_tag=$VERSION_TAG" >> "$GITHUB_OUTPUT"
 
       - name: Show extracted version
@@ -40,8 +40,8 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v${{ steps.extract_version.outputs.version_tag }}
-          name: v${{ steps.extract_version.outputs.version_tag }}
+          tag_name: ${{ steps.extract_version.outputs.version_tag }}
+          name: ${{ steps.extract_version.outputs.version_tag }}
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
