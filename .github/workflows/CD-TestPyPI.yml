@@ -15,12 +15,13 @@ jobs:
           python-version: 3.12
 
       - name: Install Poetry
-        run: pip install poetry
+        run: pip install poetry --no-dev
+
+      - name: Configure Poetry for TestPyPI
+        run: poetry config pypi-token.testpypi ${{ secrets.PYPI_TOKEN_TEST }}
 
       - name: Build package
         run: poetry build
 
       - name: Publish to TestPyPI
-        env:
-          POETRY_PYPI_TOKEN_TESTPYPI: ${{ secrets.PYPI_TOKEN_TEST }}
         run: poetry publish -r testpypi --no-interaction
