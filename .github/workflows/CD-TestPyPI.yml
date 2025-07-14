@@ -15,7 +15,7 @@ jobs:
           python-version: 3.12
 
       - name: Install Poetry
-        run: pip install poetry --no-dev
+        run: pip install poetry
 
       - name: Configure Poetry for TestPyPI
         run: poetry config pypi-token.testpypi ${{ secrets.PYPI_TOKEN_TEST }}
