@@ -81,7 +81,7 @@ class PatternGenerator:
 
         if not all(
             isinstance(v, int)  # type: ignore[reportUnnecessaryIsInstance]
-            and self.RGB_VALUE_MIN <= v <= self.RGB_VALUE_MIN
+            and self.RGB_VALUE_MIN <= v <= self.RGB_VALUE_MAX
             for v in rgb_pattern
         ):
             message = ErrorMessages.RGB_VALUE_RANGE.value
