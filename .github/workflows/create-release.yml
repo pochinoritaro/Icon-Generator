@@ -20,8 +20,14 @@ jobs:
         id: extract_version
         run: |
           VERSION=$(grep -m 1 "^version =" pyproject.toml | cut -d '"' -f2)
-          VERSION_TAG="v$(echo "$VERSION")"
+          VERSION_TAG="$(echo "$VERSION")"
           echo "version_tag=$VERSION_TAG" >> "$GITHUB_OUTPUT"
+
+      - name: Extract package name from pyproject.toml
+        id: extract_name
+        run: |
+          NAME=$(grep -m 1 "^name =" pyproject.toml | cut -d '"' -f2)
+          echo "package_name=$NAME" >> "$GITHUB_OUTPUT"
 
       - name: Show extracted version
         run: |
@@ -36,14 +42,16 @@ jobs:
 
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
 
-          git tag "${{ steps.extract_version.outputs.version_tag }}"
-          git push origin "${{ steps.extract_version.outputs.version_tag }}"
+          git tag "v${{ steps.extract_version.outputs.version_tag }}"
+          git push origin "v${{ steps.extract_version.outputs.version_tag }}"
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ steps.extract_version.outputs.version_tag }}
-          name: ${{ steps.extract_version.outputs.version_tag }}
+          tag_name: v${{ steps.extract_version.outputs.version_tag }}
+          name: v${{ steps.extract_version.outputs.version_tag }}
           generate_release_notes: true
+          body: |
+            📦 PyPI: https://pypi.org/project/${{ steps.extract_name.outputs.package_name }}/${{ steps.extract_version.outputs.version_tag }}/
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
