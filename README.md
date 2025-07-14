@@ -16,7 +16,7 @@ GitHubのユーザアイコン風の画像も生成可能で、プロジェク�
 ## インストール
 
 ```bash
-pip install icongenerator
+pip install icon-generator
 ```
 
 ---
