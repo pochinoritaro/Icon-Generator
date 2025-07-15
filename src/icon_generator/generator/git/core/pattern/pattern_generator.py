@@ -70,10 +70,10 @@ class PatternGenerator:
         """左右対称のミラーリングを行う"""
         return pattern[[2, 1, 0, 1, 2]]
 
-    def apply_color(self, rgb_pattern: list[int]) -> NDArray[np.int_]:
+    def apply_color(self, rgb_pattern: tuple[int, int, int]) -> NDArray[np.int_]:
         """パターンにRGBカラーを適用した配列を返す"""
         if not (
-            isinstance(rgb_pattern, list)  # type: ignore[reportUnnecessaryIsInstance]
+            isinstance(rgb_pattern, tuple)  # type: ignore[reportUnnecessaryIsInstance]
             and len(rgb_pattern) == self.RGB_PATTERN_LENGTH
         ):
             message = ErrorMessages.RGB_PATTERN_LENGTH.value
@@ -81,7 +81,7 @@ class PatternGenerator:
 
         if not all(
             isinstance(v, int)  # type: ignore[reportUnnecessaryIsInstance]
-            and self.RGB_VALUE_MIN <= v <= self.RGB_VALUE_MIN
+            and self.RGB_VALUE_MIN <= v <= self.RGB_VALUE_MAX
             for v in rgb_pattern
         ):
             message = ErrorMessages.RGB_VALUE_RANGE.value
