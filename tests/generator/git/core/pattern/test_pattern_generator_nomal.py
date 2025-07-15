@@ -100,3 +100,59 @@ class TestPatternGeneratorNomalCases:
         mirrored = generator._mirror_pattern(input_pattern)  # type: ignore[attr-defined]
 
         np.testing.assert_array_equal(mirrored, expected)
+
+    @pytest.mark.reg
+    @pytest.mark.v1_0_0
+    def test_apply_color_shape(self) -> None:
+        """apply_color が返す配列の形状が (5, 5, 3) になっていること
+
+        対象メソッド: apply_color
+        in:  0>=x=>255のtuple
+        out: shape=(5, 5, 3)の多次元配列
+        """
+        generator = PatternGenerator(hex_pattern=self.hex_string)
+        test_rgb_pattern = (1, 0, 0)
+        result = generator.apply_color(rgb_pattern=test_rgb_pattern)
+
+        assert result.shape == (5, 5, 3)
+
+    def test_apply_color_assigns_rgb_to_colored_area(self) -> None:
+        """apply_color メソッドで指定したRGB色が正しくパターンに適用されること
+
+        対象メソッド: apply_color
+        in:  0 <= x <= 255 の3要素 tuple(RGBカラー)
+        out: パターン内の1の位置に指定した RGB 色が適用されている配列
+        """
+        # 準備: 特定のRGB 色
+        rgb_color = (100, 150, 200)
+
+        pg = PatternGenerator(self.hex_string)
+        color_pattern = pg.apply_color(rgb_color)
+
+        # 検証: パターンの1の位置が指定色になっている
+        mask = pg.pattern == 1
+        colored_pixels = color_pattern[mask]
+
+        # すべての対象ピクセルが rgb_color と一致しているか
+        expected = np.tile(rgb_color, (colored_pixels.shape[0], 1))
+        assert np.array_equal(colored_pixels, expected)
+
+    def test_apply_color_assigns_white_to_background(self) -> None:
+        """apply_color がパターンの白部分に白(255,255,255)を適用していること
+
+        対象メソッド: apply_color
+        in:  0 <= x <= 255 の3要素 tuple(RGBカラー)
+        out: パターン内の0の位置に白色が適用されている配列
+        """
+        # 準備: 特定のRGB 色
+        rgb_color = (10, 20, 30)
+
+        pg = PatternGenerator(self.hex_string)
+        color_pattern = pg.apply_color(rgb_color)
+
+        # 検証: パターンの0の位置が白 (255, 255, 255) になっている
+        mask = pg.pattern == 0
+        white_pixels = color_pattern[mask]
+
+        expected = np.tile((255, 255, 255), (white_pixels.shape[0], 1))
+        assert np.array_equal(white_pixels, expected)
