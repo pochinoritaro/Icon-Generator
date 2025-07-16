@@ -24,6 +24,8 @@ class TestPatternGeneratorNegativeCases:
         """PatternGeneratorインスタンス"""
         return PatternGenerator(hex_string)
 
+    @pytest.mark.reg
+    @pytest.mark.v1_0_0
     @pytest.mark.parametrize(
         "invalid_hex",
         [
@@ -42,6 +44,8 @@ class TestPatternGeneratorNegativeCases:
         with pytest.raises(ValueError, match="hex_pattern must be exactly"):
             PatternGenerator(invalid_hex)
 
+    @pytest.mark.reg
+    @pytest.mark.v1_0_0
     @pytest.mark.parametrize(
         "invalid_hex",
         [
@@ -62,6 +66,8 @@ class TestPatternGeneratorNegativeCases:
         ):
             PatternGenerator(invalid_hex)
 
+    @pytest.mark.reg
+    @pytest.mark.v1_0_0
     @pytest.mark.parametrize(
         ("invalid_rgb_tupple", "expected_exception", "expected_message"),
         [
