@@ -123,7 +123,7 @@ class TestPatternGeneratorEdgeCases:
             expected_exception,
             match=expected_message,
         ):
-            generator.apply_color(rgb_pattern=invalid_rgb_tupple)  # type: ignore[reportArgumentType]
+            generator.apply_color(rgb_pattern=invalid_rgb_tupple)  # type: ignore[arg-type]
 
     @pytest.mark.reg
     @pytest.mark.v1_0_0
