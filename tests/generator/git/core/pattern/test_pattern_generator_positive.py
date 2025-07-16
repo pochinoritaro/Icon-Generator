@@ -14,7 +14,7 @@ from src.icon_generator.generator.git.core.pattern import PatternGenerator
 
 
 class TestPatternGeneratorPositiveCases:
-    """正常系における PatternGenerator の動作を検証するテストクラス。"""
+    """PatternGeneratorにおける正常系の動作を検証するテストクラス。"""
 
     @pytest.fixture
     def hex_string(self) -> str:
