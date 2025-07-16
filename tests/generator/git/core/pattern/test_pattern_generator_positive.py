@@ -13,7 +13,7 @@ from numpy.typing import NDArray
 from src.icon_generator.generator.git.core.pattern import PatternGenerator
 
 
-class TestPatternGeneratorNomalCases:
+class TestPatternGeneratorPositiveCases:
     """正常系における PatternGenerator の動作を検証するテストクラス。"""
 
     @pytest.fixture
