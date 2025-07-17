@@ -14,6 +14,8 @@ from src.icon_generator.generator.git.core.color.rgb_generator import RGBGenerat
 class TestRGBGeneratorPositiveCases:
     """RGBGeneratorにおける正常系の動作を検証するテストクラス。"""
 
+    RGB_MAX = 255
+
     @pytest.fixture
     def hex_string(self) -> str:
         """有効な16進数文字列"""
@@ -47,13 +49,12 @@ class TestRGBGeneratorPositiveCases:
             generator (RGBGenerator): RGBGeneratorインスタンス
 
         """
-        max_range = 255
-        assert all(0 <= v <= max_range for v in generator.rgb)
+        assert all(0 <= v <= self.RGB_MAX for v in generator.rgb)
 
     @pytest.mark.reg
     @pytest.mark.v1_0_0
     def test_rgb_equal_red_green_blue(self, generator: RGBGenerator) -> None:
-        """RGB が red, green, blue と一致していること
+        """RGB が red, green, blue プロパティの値と一致していること
 
         Args:
             generator (RGBGenerator): RGBGeneratorインスタンス
