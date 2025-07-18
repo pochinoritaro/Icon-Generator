@@ -8,7 +8,7 @@
 
 import pytest
 
-from src.icon_generator.generator.git.core.pattern import PatternGenerator
+from icon_generator.generator.git.core.pattern import PatternGenerator
 
 
 class TestPatternGeneratorNegativeCases:

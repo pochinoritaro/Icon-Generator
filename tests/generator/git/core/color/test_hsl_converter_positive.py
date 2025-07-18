@@ -7,7 +7,7 @@
 # Permission is hereby granted, free of charge, to any person obtaining a copy...
 import pytest
 
-from src.icon_generator.generator.git.core.color.hsl_converter import HSLConverter
+from icon_generator.generator.git.core.color.hsl_converter import HSLConverter
 
 
 class TestHSLConverterPositiveCases:

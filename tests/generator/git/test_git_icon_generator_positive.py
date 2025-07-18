@@ -11,7 +11,7 @@ from io import BytesIO
 import pytest
 from PIL import Image
 
-from src.icon_generator.generator.git.git_icon_generator import GitIconGenerator
+from icon_generator.generator.git.git_icon_generator import GitIconGenerator
 
 
 class TestGitIconGeneratorPositiveCases:

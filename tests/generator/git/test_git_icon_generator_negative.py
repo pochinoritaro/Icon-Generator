@@ -16,11 +16,11 @@ import pytest
 from numpy.typing import NDArray
 from PIL import Image, UnidentifiedImageError
 
-from src.icon_generator.errors.error_message import ErrorMessages
-from src.icon_generator.generator.git.core.pattern.pattern_generator import (
+from icon_generator.errors.error_message import ErrorMessages
+from icon_generator.generator.git.core.pattern.pattern_generator import (
     PatternGenerator,
 )
-from src.icon_generator.generator.git.git_icon_generator import GitIconGenerator
+from icon_generator.generator.git.git_icon_generator import GitIconGenerator
 
 
 class TestGitIconGeneratorNegativeCases:
@@ -176,7 +176,7 @@ class TestGitIconGeneratorNegativeCases:
             return dummy_image
 
         monkeypatch.setattr(
-            "src.icon_generator.generator.git.git_icon_generator.BytesIO",
+            "icon_generator.generator.git.git_icon_generator.BytesIO",
             fake_bytesio,
         )
 

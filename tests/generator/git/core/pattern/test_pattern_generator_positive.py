@@ -10,7 +10,7 @@ import numpy as np
 import pytest
 from numpy.typing import NDArray
 
-from src.icon_generator.generator.git.core.pattern import PatternGenerator
+from icon_generator.generator.git.core.pattern import PatternGenerator
 
 
 class TestPatternGeneratorPositiveCases:

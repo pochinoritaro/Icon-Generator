@@ -8,7 +8,7 @@
 
 import pytest
 
-from src.icon_generator.generator.git.core.color.rgb_generator import RGBGenerator
+from icon_generator.generator.git.core.color.rgb_generator import RGBGenerator
 
 
 class TestRGBGeneratorPositiveCases:

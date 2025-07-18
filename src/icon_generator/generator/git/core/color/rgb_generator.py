@@ -12,7 +12,7 @@ HSL形式で表現されたカラーパターン文字列からRGBカラー値�
 import colorsys
 import math
 
-from src.icon_generator.errors import ErrorMessages
+from icon_generator.errors import ErrorMessages
 
 from .hsl_converter import HSLConverter
 
