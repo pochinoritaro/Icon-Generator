@@ -1,6 +1,6 @@
 [project]
 name = "icon-generator"
-version = "1.0.0-alpha"
+version = "1.0.0"
 description = "This package generates various icons."
 authors = [
     {name = "pochimoritaro",email = "pochimoritaro@gmail.com"}
