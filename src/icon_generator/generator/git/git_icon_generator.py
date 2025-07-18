@@ -49,8 +49,16 @@ class GitIconGenerator(Generator):
     def generate_on_memory(self, image_size: int = 600) -> BytesIO:
         """UUIDに基づくパターンとカラーを適用したアイデンティコン画像を生成し、メモリ上にPNG形式で保持したBytesIOオブジェクトを返す。
 
+        Args:
+            image_size (int, optional):
+                イメージサイズ (デフォルトは600)
+
+        Raises:
+            RuntimeError: RGBの適用に失敗した際に発生
+            RuntimeError: 画像作成、もしくはメモリ保存に失敗した際に発生
+
         Returns:
-            BytesIO: PNG画像のバイナリデータを保持したメモリオブジェクト。
+            BytesIO: PNG画像のバイナリデータを保持したメモリオブジェクト
 
         """
         try:
