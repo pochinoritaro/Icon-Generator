@@ -15,8 +15,8 @@ from io import BytesIO
 from PIL import Image, UnidentifiedImageError
 from PIL.Image import Resampling
 
-from src.icon_generator.errors import ErrorMessages
-from src.icon_generator.generator import Generator
+from icon_generator.errors import ErrorMessages
+from icon_generator.generator import Generator
 
 from .core.color import RGBGenerator
 from .core.pattern import PatternGenerator
@@ -49,13 +49,25 @@ class GitIconGenerator(Generator):
     def generate_on_memory(self, image_size: int = 600) -> BytesIO:
         """UUIDに基づくパターンとカラーを適用したアイデンティコン画像を生成し、メモリ上にPNG形式で保持したBytesIOオブジェクトを返す。
 
+        Args:
+            image_size (int, optional):
+                イメージサイズ (デフォルトは600)
+
+        Raises:
+            RuntimeError: RGBの適用に失敗した際に発生
+            RuntimeError: 画像作成、もしくはメモリ保存に失敗した際に発生
+
         Returns:
-            BytesIO: PNG画像のバイナリデータを保持したメモリオブジェクト。
+            BytesIO: PNG画像のバイナリデータを保持したメモリオブジェクト
 
         """
-        colored_pattern = self._identicon_pattern.apply_color(
-            rgb_pattern=self._color.rgb,
-        )
+        try:
+            colored_pattern = self._identicon_pattern.apply_color(
+                rgb_pattern=self._color.rgb,
+            )
+        except ValueError as e:
+            message = ErrorMessages.APPLY_COLOR_FAILED.value
+            raise RuntimeError(message) from e
 
         try:
             # 画像作成

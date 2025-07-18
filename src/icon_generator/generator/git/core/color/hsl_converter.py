@@ -50,7 +50,15 @@ class HSLConverter:
 
     @classmethod
     def from_pattern(cls, color_pattern: str) -> tuple[float, float, float]:
-        """color_pattern から H, S, L を取得"""
+        """color_pattern から H, S, L を取得
+
+        Args:
+            color_pattern (str): 有効な16進数文字列 (文字長7)
+
+        Returns:
+            tuple[float, float, float]: RGBパターン
+
+        """
         hue = cls._calculate_hue(color_pattern[:3])
         saturation = cls._calculate_saturation(color_pattern[3:5])
         luminance = cls._calculate_luminance(color_pattern[5:7])
@@ -58,15 +66,39 @@ class HSLConverter:
 
     @classmethod
     def _calculate_hue(cls, hue_hex: str) -> float:
-        """16進数の hue を 0-360 に変換"""
+        """16進数の hue を 0-360 に変換
+
+        Args:
+            hue_hex (str): 有効な16進数文字列 (文字長3)
+
+        Returns:
+            float: 色相
+
+        """
         return round(int(hue_hex, 16) * cls.HUE_SCALE)
 
     @classmethod
     def _calculate_saturation(cls, sat_hex: str) -> float:
-        """16進数の saturation を 0-100 に変換"""
+        """16進数の saturation を 0-100 に変換
+
+        Args:
+            sat_hex (str): 有効な16進数文字列 (文字長2)
+
+        Returns:
+            float: 彩度
+
+        """
         return round(cls.MAX_SATURATION - int(sat_hex, 16) * cls.SATURATION_SCALE)
 
     @classmethod
     def _calculate_luminance(cls, lum_hex: str) -> float:
-        """16進数の luminance を 0-100 に変換"""
+        """16進数の luminance を 0-100 に変換
+
+        Args:
+            lum_hex (str): 有効な16進数文字列 (文字長2)
+
+        Returns:
+            float: 輝度
+
+        """
         return round(cls.MAX_LUMINANCE - int(lum_hex, 16) * cls.LUMINANCE_SCALE)
