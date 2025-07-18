@@ -23,9 +23,9 @@ class TestGitIconGeneratorPositiveCases:
         return uuid.uuid4()
 
     @pytest.fixture
-    def generator(self, unique_uuid: uuid.UUID) -> GitIconGenerator:
+    def generator(self, hex_uuid: uuid.UUID) -> GitIconGenerator:
         """GitIconGeneratorインスタンス"""
-        return GitIconGenerator(unique_uuid)
+        return GitIconGenerator(hex_uuid)
 
     @pytest.mark.reg
     @pytest.mark.v1_0_0
