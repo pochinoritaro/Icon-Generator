@@ -20,6 +20,7 @@ class ErrorMessages(Enum):
 
     # GitIconGenerator.generate_on_memory but common?
     IDENTICON_GENERATION_FAILED = "Identicon image generation failed"
+    APPLY_COLOR_FAILED = "aplpy color failed"
 
     # PatternGenerator.__init__
     INVALID_HEX_LENGTH = "hex_pattern must be exactly {length} characters long."
