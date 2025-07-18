@@ -53,9 +53,13 @@ class GitIconGenerator(Generator):
             BytesIO: PNG画像のバイナリデータを保持したメモリオブジェクト。
 
         """
-        colored_pattern = self._identicon_pattern.apply_color(
-            rgb_pattern=self._color.rgb,
-        )
+        try:
+            colored_pattern = self._identicon_pattern.apply_color(
+                rgb_pattern=self._color.rgb,
+            )
+        except ValueError as e:
+            message = ErrorMessages.APPLY_COLOR_FAILED.value
+            raise RuntimeError(message) from e
 
         try:
             # 画像作成
