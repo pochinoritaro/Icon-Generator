@@ -55,7 +55,15 @@ class PatternGenerator:
         self.pattern = self._create_pattern(hex_pattern=hex_pattern)
 
     def _create_pattern(self, hex_pattern: str) -> NDArray[np.int_]:
-        """16進数の文字列を基に2次元のパターンを作成"""
+        """16進数の文字列を基に2次元のパターンを作成
+
+        Args:
+            hex_pattern (str): 有効な16進数文字列(文字長: 15)
+
+        Returns:
+            NDArray[np.int_]: shape=(5, 5) の多次元配列
+
+        """
         binary_pattern = np.array(
             [(1 if int(x, 16) % 2 == 0 else 0) for x in hex_pattern],
         ).reshape(self.PATTERN_HEIGHT, self.PATTERN_WIDTH)
@@ -67,11 +75,31 @@ class PatternGenerator:
         return np.rot90(m=mirrored_pattern, k=3)
 
     def _mirror_pattern(self, pattern: NDArray[np.int_]) -> NDArray[np.int_]:
-        """左右対称のミラーリングを行う"""
+        """パターンを上下に反転し、中央を軸に折り返し5行構成のパターンを生成
+
+        Args:
+            pattern (NDArray[np.int_]): shape=(3, 5) の多次元配列
+
+        Returns:
+            NDArray[np.int_]: shape=(5, 5) の多次元配列
+
+        """
         return pattern[[2, 1, 0, 1, 2]]
 
     def apply_color(self, rgb_pattern: tuple[int, int, int]) -> NDArray[np.int_]:
-        """パターンにRGBカラーを適用した配列を返す"""
+        """バイナリパターンに指定されたRGBカラーを適用したカラー配列を返す
+
+        Args:
+            rgb_pattern (tuple[int, int, int]): 適用するRGBカラー (0〜255の整数値x3)
+
+        Raises:
+            ValueError: RGBの長さが3でない、または値が範囲外の場合に発生
+
+        Returns:
+            NDArray[np.int_]:
+                shape=(5, 5, 3) のカラー画像配列。 1の位置に色を塗り、0の位置は白。
+
+        """
         if not (
             isinstance(rgb_pattern, tuple)  # type: ignore[reportUnnecessaryIsInstance]
             and len(rgb_pattern) == self.RGB_PATTERN_LENGTH
